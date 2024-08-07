@@ -10,23 +10,22 @@
 
     #ifdef TDT_DEBUG_PRINT
         #include <cassert>
+        #include <string>
 
-        #define TDT_LINE_FILE_OUTPUT std::string(__FILE__) + ":" + std::string(__LINE__) + ": "
+        #define TDT_LINE_FILE_OUTPUT std::string(__FILE__) + ":" + std::to_string(__LINE__)  + ": "
         #define TDT_DEBUG_TAB  "\n    | "
 
         #define TDT_DEBUG_TIME " (" + std::string(__TIME__) + ")"
 
-        #define TDT_DEBUG_LOG_MESSAGE "DEBUG_LOG: "
-        #define TDT_DEBUG_WARN_MESSAGE "DEBUG_WARN"
-        #define TDT_DEBUG_ERROR_MESSAGE "DEBUG_ERROR"
-        #define TDT_DEBUG_ASSERT_MESSAGE "DEBUG_ASSERT"
+        #define TDT_DEBUG_LOG_MESSAGE "LOG: "
+        #define TDT_DEBUG_WARN_MESSAGE "WARNING"
+        #define TDT_DEBUG_ERROR_MESSAGE "ERROR"
+        #define TDT_DEBUG_ASSERT_MESSAGE "ASSERT"
 
-
-        #define TDT_LOG(...)      TDT_DEBUG_PRINT(std::string(TDT_DEBUG_TIME) + std::string(TDT_DEBUG_LOG_MESSAGE)  + std::string(__VA_ARGS__)) 
-        #define TDT_WARN(...)     std::cout << TDT_LINE_FILE_OUTPUT << TDT_DEBUG_WARN_MESSAGE << TDT_DEBUG_TAB << (__VA_ARGS__) << std::endl;
-        #define TDT_ERROR(...)    std::cout << TDT_LINE_FILE_OUTPUT << TDT_DEBUG_ERROR_MESSAGE << TDT_DEBUG_TAB << (__VA_ARGS__) << std::endl;
+        #define TDT_LOG(...)      TDT_DEBUG_PRINT(TDT_DEBUG_TIME + TDT_DEBUG_LOG_MESSAGE  + (__VA_ARGS__)) 
+        #define TDT_WARN(...)     TDT_DEBUG_PRINT(TDT_LINE_FILE_OUTPUT + TDT_DEBUG_WARN_MESSAGE + TDT_DEBUG_TAB + (__VA_ARGS__));
+        #define TDT_ERROR(...)    TDT_DEBUG_PRINT(TDT_LINE_FILE_OUTPUT + TDT_DEBUG_ERROR_MESSAGE + TDT_DEBUG_TAB + (__VA_ARGS__));
         #define TDT_ASSERT(assertion, ...) assert(((__VA_ARGS__), assertion))
-        #define TDT_BREAK(...) assert(false)
     #else
         #error TDT_DEBUG_PRINT not defined!
     #endif
