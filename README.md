@@ -5,9 +5,9 @@
 
 ## Setup
 ```cpp
-#define T_DEBUG_ENABLED 1
+#define TDT_DEBUG_ENABLED 1
 #define TDT_PRINT_WITH_STD_COUT 1
-#include <T_DEBUG_TOOLS>
+#include "T_DEBUG_TOOLS/Logger.h"
 
 int main()
 {
