@@ -32,5 +32,5 @@
 
 
 #else
-    #warning <DEBUG_LOG.h> included but not enabled. Either remove include or define TDT_DEBUG_ENABLED
+    #warning <T_DEBUG_TOOLS/Logger.h> included but not enabled. Either remove include or define TDT_DEBUG_ENABLED
 #endif
