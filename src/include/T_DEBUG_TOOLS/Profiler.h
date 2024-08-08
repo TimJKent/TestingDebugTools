@@ -1,7 +1,7 @@
 #pragma once
 #include <chrono>
 #include <string>
-#include "Logger.h"
+#include "ProfilerCollector.h"
 
 #define TDT_PROFILER_PROFILE_SCOPE(...)  TDT_PROFILER_SCOPED(_PRETTY_FUNCTION__);
 #define TDT_PROFILER_SCOPED(Argument) TDT::Scoped_Profiler var_##argument((__PRETTY_FUNCTION__));
@@ -15,6 +15,7 @@ namespace TDT
             {
                 functionName = funcName;
                 startTime = std::chrono::high_resolution_clock::now();
+                ProfilerCollector::PushFuncIDOntoCallStack(functionName);
             }
     
             ~Scoped_Profiler()
@@ -22,7 +23,7 @@ namespace TDT
                 std::chrono::time_point<std::chrono::high_resolution_clock> endTime = std::chrono::high_resolution_clock::now();
                 double microsecondsEllapsed = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime).count();
                 double millisecondsEllapsed = MicrosecondsToMilliseconds(microsecondsEllapsed);
-                TDT_LOG(FormatFunctionRunTime(functionName, millisecondsEllapsed));
+                ProfilerCollector::AddProfilerFuncData(functionName, std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime));
             }
     
         private:
