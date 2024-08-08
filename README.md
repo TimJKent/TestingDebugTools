@@ -1,9 +1,9 @@
 # TestingDebugTools
 
+<details>
+<summary>Logging </summary>
 
-# Logging
-
-## Setup
+### Setup
 ```cpp
 #define TDT_DEBUG_ENABLED 1
 #define TDT_PRINT_WITH_STD_COUT 1
@@ -46,3 +46,21 @@ TDT_ASSERT(false, "Message")
 
 Assertion failed: (("Message"), false), file filename.extention, line linenumber
 ```
+</details>
+<details>
+<summary> Profiling </summary>
+
+```cpp
+void Func()
+{
+  TDT_PROFILER_PROFILE_SCOPE();
+  //Rest of Func
+}
+```
+
+Output
+```txt
+(HH:MM:SS) LOG: void Func(): 1000.000000ms
+```
+</summary>
+
