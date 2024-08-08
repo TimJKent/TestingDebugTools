@@ -1,4 +1,8 @@
 # TestingDebugTools
+A simple header only set of tools for logging and profiling.
+
+
+![Screenshot 2024-08-07 223658](https://github.com/user-attachments/assets/64202724-e444-4628-b29f-84ce63563dc2)
 
 <details>
 <summary>Logging </summary>
@@ -49,6 +53,8 @@ Assertion failed: (("Message"), false), file filename.extention, line linenumber
 </details>
 <details>
 <summary> Profiling </summary>
+
+To profile a function call TDT_PROFILER_PROFILE_SCOPE() at the beginning of the scope.
 
 ```cpp
 void Func()
