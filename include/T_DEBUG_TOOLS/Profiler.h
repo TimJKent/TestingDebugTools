@@ -1,10 +1,10 @@
 #pragma once
 #include <chrono>
 #include <string>
-#include <T_DEBUG_TOOLS/Logger/Logger.h>
+#include "Logger.h"
 
 #define TDT_PROFILER_PROFILE_SCOPE(...)  TDT_PROFILER_SCOPED(_PRETTY_FUNCTION__);
-#define TDT_PROFILER_SCOPED(Argument) T_DEBUG_TOOLS::Scoped_Profiler var_##argument((__PRETTY_FUNCTION__));
+#define TDT_PROFILER_SCOPED(Argument) TDT::Scoped_Profiler var_##argument((__PRETTY_FUNCTION__));
 
 namespace TDT
 {
@@ -22,18 +22,17 @@ namespace TDT
                 std::chrono::time_point<std::chrono::high_resolution_clock> endTime = std::chrono::high_resolution_clock::now();
                 double microsecondsEllapsed = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime).count();
                 double millisecondsEllapsed = MicrosecondsToMilliseconds(microsecondsEllapsed);
-
                 TDT_LOG(FormatFunctionRunTime(functionName, millisecondsEllapsed));
             }
     
         private:
-            inline double MicrosecondsToMilliseconds(double microseconds)
+            inline double MicrosecondsToMilliseconds(double microseconds) const
             {
                 const double microToMilli = 0.001;
                 return microseconds * microToMilli;
             }
 
-            std::string FormatFunctionRunTime(const std::string& functionName, double millisecondsEllapsed)
+            std::string FormatFunctionRunTime(const std::string& functionName, double millisecondsEllapsed) const
             {
                 return functionName + ": " + std::to_string(millisecondsEllapsed) + "ms";
             }
