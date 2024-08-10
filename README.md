@@ -1,11 +1,9 @@
 # TestingDebugTools
-A simple header only set of tools for logging and profiling.
-
-
-![Screenshot 2024-08-07 223658](https://github.com/user-attachments/assets/64202724-e444-4628-b29f-84ce63563dc2)
+A simple tool for logging and profiling.
 
 <details>
 <summary>Logging </summary>
+
 
 ### Setup
 ```cpp
@@ -51,10 +49,16 @@ TDT_ASSERT(false, "Message")
 Assertion failed: (("Message"), false), file filename.extention, line linenumber
 ```
 </details>
+
+![Screenshot 2024-08-07 223658](https://github.com/user-attachments/assets/64202724-e444-4628-b29f-84ce63563dc2)
+
+
 <details>
 <summary> Profiling </summary>
+  
 
-To profile a function call TDT_PROFILER_PROFILE_SCOPE() at the beginning of the scope.
+
+To profile a function call TDT_PROFILER_PROFILE_SCOPE() at the beginning of the scope. Each call to TDT_PROFILER_PROFILE_SCOPE() pushes to the Proflier Collector Stack. When the last stack data is poped the Profiler Collector will print stats sorted by total runtime.
 
 ```cpp
 void Func()
@@ -68,5 +72,6 @@ Output
 ```txt
 (HH:MM:SS) LOG: void Func(): 1000.000000ms
 ```
-</summary>
+</details>
 
+![Screenshot 2024-08-07 225615](https://github.com/user-attachments/assets/cffff850-2d83-4c90-b2e1-9be52e5517ac)
