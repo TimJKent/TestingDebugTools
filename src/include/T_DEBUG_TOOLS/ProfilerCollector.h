@@ -44,16 +44,6 @@ public:
         averageRuntime =  std::chrono::microseconds::zero();
     }
 
-   // ProfilerFuncData(ProfilerFuncData& copy)
-   // {
-   //     funcNameID = copy.funcNameID;
-   //     funcCallCount = copy.funcCallCount;
-//
-   //     fastestRuntime = copy.fastestRuntime;
-   //     slowestRuntime = copy.slowestRuntime;
-   //     averageRuntime = copy.averageRuntime;
-   // }
-
     static bool compare(ProfilerFuncData& a, ProfilerFuncData& b)
     {
         return (a.averageRuntime * a.funcCallCount) > (b.averageRuntime * b.funcCallCount);
@@ -74,6 +64,11 @@ class ProfilerCollector
             const double microToMilli = 0.001;
             return microseconds * microToMilli;
         }
+        
+        static  std::string FormatFunctionRunTime(const std::string& functionName, double millisecondsEllapsed)
+        {
+            return functionName + ": " + std::to_string(millisecondsEllapsed) + "ms";
+        }
 
         static inline std::string FormatFunctionRunTime(const std::string& functionName, double totalMillisecondsEllapsed,  double minMillisecondsEllapsed,  double averageMillisecondsEllapsed,  double maxMillisecondsEllapsed,  uint64_t callCount)
         {
@@ -93,3 +88,4 @@ class ProfilerCollector
         static std::map<std::string, ProfilerFuncData> profilerDataMap;
         static std::stack<std::string> profilerFuncIDStack;
 };
+
