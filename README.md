@@ -79,7 +79,7 @@ Output
 </details>
 
 <details>
-<summary> Function Runtime Profiling </summary>
+<summary> Function Timebetween Profiling </summary>
 
 ```cpp
 #define TDT_DEBUG_ENABLED 1
@@ -115,7 +115,7 @@ int main()
 ```
 
 Output
-![Screenshot 2024-08-07 225615](https://github.com/user-attachments/assets/cffff850-2d83-4c90-b2e1-9be52e5517ac)
+![Screenshot 2024-08-07 225615](https://github.com/user-attachments/assets/bdcac419-df10-4780-b2df-a1ca8849868b)
 
   - CTS: Count of timebetween being too short (Lower is better)
   - CTL: Count of timebetween being too long (Lower is better)
