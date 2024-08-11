@@ -63,7 +63,7 @@ class TimebetweenProfilerCollector
         static inline std::string FormatFunctionRunTime(const std::string& functionName, uint32_t timesCalledSoonerThanThreshold,  uint32_t timesCalledLaterThanThreshold,  uint32_t timesCalledWithinThreshold,  double fastestTimebetween,  double slowestTimebetween)
         {
             std::string output = std::format(
-                "| CTS:{1:<.5s} CTL:{2:.5s} COT:{3:.5s} FST:{4:.5s}ms SLW:{5:.5s}ms|", 
+                "| CTS:{1:<.5s} CTL:{2:.5s} COT:{3:.5s} FST:{4:.5s}ms SLW:{5:.5s}ms {0:>115}|", 
                 functionName, 
                 std::to_string(timesCalledSoonerThanThreshold), 
                 std::to_string(timesCalledLaterThanThreshold), 

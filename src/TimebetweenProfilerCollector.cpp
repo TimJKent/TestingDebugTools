@@ -50,7 +50,7 @@ void TimebetweenProfilerCollector::AddProfilerFuncData(const std::string& funcNa
 
 void TimebetweenProfilerCollector::PrintProfilerData()
 {
-    TDT_LOG(std::format("{:-^160}","PROFILER DATA"));
+    TDT_LOG(std::format("{:-^160}","TIMEBETWEEN PROFILER DATA"));
 
     std::vector<TimebetweenProfilerFuncData> sortedData;
     
