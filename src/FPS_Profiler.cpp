@@ -16,8 +16,7 @@ FPS_Profiler::~FPS_Profiler()
     fps = (1.0 / funcRuntimeMs.count()) * 1000.0;
 }
 
-static uint32_t GetFPS()
-{
+static FPS_Profiler::GetFPS(){
     return fps;
 }
 
