@@ -81,6 +81,21 @@ Output
 <details>
 <summary> Function Timebetween Profiling </summary>
 
+Useful for testing functions that need to be called at an exact rep rate.
+  
+```cpp
+TDT_PROFILER_PROFILE_TIMEBETWEEN(expectedRuntime, tolerance);
+```
+  - expectedRuntime: how often this function is expected to run in microseconds
+  - tolerance: how many microseconds tolerance is acceptable
+
+  Example
+  If a function is supposed to be called every 100 milliseconds with +- 10 milliseconds tolerance
+
+```cpp
+TDT_PROFILER_PROFILE_TIMEBETWEEN(std::chrono::microseconds(100000), std::chrono::microseconds(10000));
+```
+
 ```cpp
 #define TDT_DEBUG_ENABLED 1
 #define TDT_PRINT_WITH_STD_COUT 1
@@ -115,7 +130,8 @@ int main()
 ```
 
 Output
-![Screenshot 2024-08-07 225615](https://github.com/user-attachments/assets/bdcac419-df10-4780-b2df-a1ca8849868b)
+![Screenshot 2024-08-10 191008](https://github.com/user-attachments/assets/113ec5c8-48db-47be-ac43-031b35365a12)
+
 
   - CTS: Count of timebetween being too short (Lower is better)
   - CTL: Count of timebetween being too long (Lower is better)
