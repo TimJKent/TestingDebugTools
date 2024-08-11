@@ -53,10 +53,10 @@ Assertion failed: (("Message"), false), file filename.extention, line linenumber
 ![Screenshot 2024-08-07 223658](https://github.com/user-attachments/assets/64202724-e444-4628-b29f-84ce63563dc2)
 
 
-<details>
-<summary> Profiling </summary>
+## Profiling
   
-
+<details>
+<summary> Function Runtime Profiling </summary>
 
 To profile a function call TDT_PROFILER_PROFILE_SCOPE() at the beginning of the scope. Each call to TDT_PROFILER_PROFILE_SCOPE() pushes to the Proflier Collector Stack. When the last stack data is poped the Profiler Collector will print stats sorted by total runtime.
 
@@ -69,9 +69,60 @@ void Func()
 ```
 
 Output
-```txt
-(HH:MM:SS) LOG: void Func(): 1000.000000ms
-```
+![Screenshot 2024-08-07 225615](https://github.com/user-attachments/assets/cffff850-2d83-4c90-b2e1-9be52e5517ac)
+  - Ttl: Total function runtime in ms
+  - Min: Shortest function runtime in ms
+  - Avg: Average function runtime in ms
+  - Max: Longest function runtime
+  - Cnt: Time function was called
+
 </details>
 
+<details>
+<summary> Function Runtime Profiling </summary>
+
+```cpp
+#define TDT_DEBUG_ENABLED 1
+#define TDT_PRINT_WITH_STD_COUT 1
+#include "src/include/T_DEBUG_TOOLS/Logger.h"
+#include "src/include/T_DEBUG_TOOLS/Profiler.h"
+
+int callTimes = 0;
+
+void Print()
+{
+  TDT_PROFILER_PROFILE_TIMEBETWEEN(std::chrono::microseconds(500), std::chrono::microseconds(10));
+  TDT_LOG("Log Text");
+  callTimes ++;
+}
+
+int main()
+{
+  std::chrono::time_point<std::chrono::high_resolution_clock> lastCallTime = std::chrono::high_resolution_clock::now();
+  while(callTimes < 10)
+  {
+    if(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - lastCallTime) >= std::chrono::microseconds(500))
+    {
+      Print();
+      lastCallTime = std::chrono::high_resolution_clock::now();
+    }
+  }
+
+
+  TDT_PROFILER_PRINT_TIMEBETWEEN();
+  return 0;
+}
+```
+
+Output
 ![Screenshot 2024-08-07 225615](https://github.com/user-attachments/assets/cffff850-2d83-4c90-b2e1-9be52e5517ac)
+
+  - CTS: Count of timebetween being too short (Lower is better)
+  - CTL: Count of timebetween being too long (Lower is better)
+  - COT: Count of timbetween being on time (Higher is better)
+  - FST: Fastest timebetween
+  - SLW: Slowest timebetwen
+
+</details>
+
+
