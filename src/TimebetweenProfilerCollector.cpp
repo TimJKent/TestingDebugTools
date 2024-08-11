@@ -63,13 +63,6 @@ void TimebetweenProfilerCollector::PrintProfilerData()
  
     for(auto& sortedIterator : sortedData)
     {
-        sortedIterator.timesCalledSoonerThanThreshold;
-        
-       
-
-        sortedIterator.fastestTimebetween;
-        sortedIterator.slowestTimebetween;
-
         double fastestTimebetween = MicrosecondsToMilliseconds(sortedIterator.fastestTimebetween.count());
         double slowestTimebetween = MicrosecondsToMilliseconds(sortedIterator.slowestTimebetween.count());
         
