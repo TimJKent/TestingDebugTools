@@ -3,6 +3,9 @@
 #include <chrono>
 #include <stdint.h>
 
+#define TDT_PROFILER_PROFILE_SCOPE_FPS(...) TDT_PROFILER_SCOPED_FPS(__PRETTY_FUNCTION__);
+#define TDT_PROFILER_SCOPED_FPS(argument) TDT::FPS_Profiler var_fps_##argument("FPS");
+
 namespace TDT
 {
     class FPS_Profiler

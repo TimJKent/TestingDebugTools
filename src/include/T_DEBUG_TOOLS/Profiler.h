@@ -11,9 +11,6 @@
 #define TDT_PROFILER_PROFILE_SCOPE(...)  TDT_PROFILER_SCOPED(__PRETTY_FUNCTION__);
 #define TDT_PROFILER_SCOPED(argument) TDT::Scoped_Profiler var_##argument((__PRETTY_FUNCTION__));
 
-#define TDT_PROFILER_PROFILE_SCOPE_FPS(...) TDT_PROFILER_SCOPED_FPS(__PRETTY_FUNCTION__);
-#define TDT_PROFILER_SCOPED_FPS(argument) TDT::Scoped_Profiler var_fps_##argument("FPS");
-
 namespace TDT
 {
     inline double MicrosecondsToMilliseconds(double microseconds)
