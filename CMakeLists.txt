@@ -14,6 +14,7 @@ target_sources(${PROJECT_NAME}
 PRIVATE
     src/ProfilerCollector.cpp
     src/TimebetweenProfilerCollector.cpp
+    src/FPS_Profiler.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
